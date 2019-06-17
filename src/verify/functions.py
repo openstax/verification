@@ -17,7 +17,7 @@ def get_token():
 
     return token
 
-def get_user_info(ox_userid):
+def get_user_info(uid):
     """
     """
     if uid:
@@ -38,16 +38,16 @@ def get_user_info(ox_userid):
             except (ValueError, IndexError):
                 email = None  # no saved emails
 
-            try:
-                user_data = {
-                    'faculty_status': data['items'][0]['faculty_status'],
-                    'email': email,
-                    'self_reported_role': data['items'][0]['self_reported_role'],
-                    'faculty_status': data['items'][0]['faculty_status'],
-                    'applications': data['items'][0]['applications']
-                }
-            except IndexError:
-                return False
+            # update full name if possible
+            try: 
+                fullname = data['items'][0]['full_name']
+            except (ValueError, IndexError):
+                fullname = None
+
+            user_data = {
+                'email': email,
+                'fullname': fullname
+            }
 
             return user_data
     else:

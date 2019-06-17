@@ -9,12 +9,8 @@ class Verification(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     @property
-    def email(self):
-        return ''
-
-    @property
-    def fullname(self):
-        return ''
+    def accounts_info(self):
+        return get_user_info(self.ox_accounts_id)
 
     def __str__(self):
         return self.salesforce_id
