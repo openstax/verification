@@ -15,7 +15,7 @@ urlpatterns = [
     path("about/", views.AboutPage.as_view(), name="about"),
     path("users/", include(profiles.urls)),
     path("admin/", admin.site.urls),
-    path(r'verify/', include(('verify.urls','verify'), namespace='verify')),
+    path(r'api/verify/', include(('verify.urls','verify'), namespace='verify')),
     path("", include(accounts.urls)),
 ]
 
